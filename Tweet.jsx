@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Time from './Time'
 
 
 class Tweet extends Component {
@@ -8,7 +9,7 @@ class Tweet extends Component {
             <div>
                 <br />
                 <b><font size='4'>{tweet.text}</font></b>
-                <p><font size='2'><i>{this.props.tweet.id}</i></font></p>
+                <font size = '2'><Time timeStamp={tweet.timeStamp} id={tweet.id}/></font>
                 <br />
                 <a href='#' className='button is-primary is-small is-rounded' onClick={() => this.props.handleLike(tweet)}>
                     {tweet.liked ? 'Unlike' : 'Like'}

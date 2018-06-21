@@ -8,7 +8,7 @@ import './../node_modules/bulma/css/bulma.css';
 
 // generate a random ID number
 function  getID() {
-  return 'ID_' + Math.random().toString(36).substr(2, 9);
+  return 'id_' + Math.random().toString(36).substr(2, 9);
   };
 
 class App extends Component {
@@ -25,7 +25,8 @@ class App extends Component {
     let tweetObj = {
       text: tweetText,
       liked: false,
-      id: getID()
+      id: getID(),
+      timeStamp: parseInt((Math.floor(Date.now() / 1000)) / 60)
     }
     this.setState( {tweets: this.state.tweets.concat(tweetObj)} );
   }
@@ -36,7 +37,8 @@ class App extends Component {
         return {
           text: t.text,
           liked: !t.liked,
-          id: t.id
+          id: t.id,
+          timeStamp: t.timeStamp
         }
       }
       return t;
@@ -74,7 +76,6 @@ class App extends Component {
           <img src = {avatar} alt =''/>
           <TweetBox prompt="What's your status?" onTweet={this.handleTweet.bind(this)}/>
         </div>
-
         <div>
             { this.state.tweets.map( (tweet) => (
                <Tweet 
@@ -83,7 +84,6 @@ class App extends Component {
                   handleDelete = {this.handleDelete.bind(this)}
                 />)
             )}
-            
         </div>
 
       </div>
