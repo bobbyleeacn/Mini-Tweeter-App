@@ -4,6 +4,7 @@ import avatar from './img/avatar.png';
 import TweetBox from './TweetBox';
 import Tweet from './Tweet'
 import './App.css';
+import './../node_modules/bulma/css/bulma.css';
 
 // generate a random ID number
 function  getID() {
@@ -34,7 +35,8 @@ class App extends Component {
       if (t.text === tweet.text) {
         return {
           text: t.text,
-          liked: !t.liked
+          liked: !t.liked,
+          id: t.id
         }
       }
       return t;
@@ -66,13 +68,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to CoderSchool Prework</h1>
+          <h1 className="App-title">Mini Tweeter App</h1>
         </header>
-
         <div>
-          <p class="subtitle">
-            Styled with <strong>Bulma</strong>!
-          </p>
           <img src = {avatar} alt =''/>
           <TweetBox prompt="What's your status?" onTweet={this.handleTweet.bind(this)}/>
         </div>
