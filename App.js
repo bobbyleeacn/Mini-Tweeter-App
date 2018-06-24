@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import avatar from './img/avatar.png';
 import TweetBox from './TweetBox';
 import Tweet from './Tweet'
+import OldTweet from './OldTweet'
+import Search from './Search'
 import './App.css';
 import './../node_modules/bulma/css/bulma.css';
 
@@ -11,12 +13,15 @@ function  getID() {
   return 'id_' + Math.random().toString(36).substr(2, 9);
   };
 
+
+
 class App extends Component {
 
   constructor(props)  {
     super(props);
     this.state = {
-      tweets: []
+      tweets: [],
+      oldtweets: []
     }
   }
 
@@ -47,7 +52,6 @@ class App extends Component {
     this.setState({
       tweets
     })
-
   }
 
   handleDelete(tweet) {
@@ -64,6 +68,36 @@ class App extends Component {
   }
 
 
+  handleOldTweets(oldtweet) {
+
+    this.setState({
+      tweets: [],
+      selection: oldtweet,
+      oldtweets: [
+        { test: 'blow', shane: 'hard'}
+                  ]
+      //oldTweets: oldTweet
+    })
+    console.log(oldtweet)
+
+
+    // this.setState({
+    //   text: oldTweet.text,
+    //   id: oldTweet.id.substring(0, 12),
+    //   timeStamp: oldTweet.timestamp,
+    //   user: oldTweet.user,
+    // })
+
+    // let oldTweet = {
+    //   text: tweetText,
+    //   id: getID(),
+    //   timeStamp: parseInt((Math.floor(Date.now() / 1000)) / 60)
+    // }
+    // data[1].id.substring(0, 12)
+
+  }
+
+
 
   render() {
     return (
@@ -73,6 +107,8 @@ class App extends Component {
           <h1 className="App-title">Mini Tweeter App</h1>
         </header>
         <div>
+          <Search onOldTweet={this.handleOldTweets.bind(this)} />
+
           <img src = {avatar} alt =''/>
           <TweetBox prompt="What's your status?" onTweet={this.handleTweet.bind(this)}/>
         </div>
@@ -85,7 +121,7 @@ class App extends Component {
                 />)
             )}
         </div>
-
+                    { this.state.oldtweets.map( (tweet) => (<OldTweet selection={this.state.selection}/>) )}
       </div>
     );
   }
