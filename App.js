@@ -76,24 +76,10 @@ class App extends Component {
       oldtweets: [
         { test: 'blow', shane: 'hard'}
                   ]
-      //oldTweets: oldTweet
+
     })
     console.log(oldtweet)
 
-
-    // this.setState({
-    //   text: oldTweet.text,
-    //   id: oldTweet.id.substring(0, 12),
-    //   timeStamp: oldTweet.timestamp,
-    //   user: oldTweet.user,
-    // })
-
-    // let oldTweet = {
-    //   text: tweetText,
-    //   id: getID(),
-    //   timeStamp: parseInt((Math.floor(Date.now() / 1000)) / 60)
-    // }
-    // data[1].id.substring(0, 12)
 
   }
 
@@ -115,6 +101,7 @@ class App extends Component {
         <div>
             { this.state.tweets.map( (tweet) => (
                <Tweet 
+                  key = {tweet.id}
                   tweet = {tweet}
                   handleLike = {this.handleLike.bind(this)}
                   handleDelete = {this.handleDelete.bind(this)}
