@@ -70,16 +70,22 @@ class App extends Component {
 
   handleOldTweets(oldtweet) {
 
+    if (this.state.oldtweets.length > 0) {
+      this.setState({
+        tweets: [],
+        selection: oldtweet,
+        oldtweets: []
+      })
+    } else {
+
     this.setState({
       tweets: [],
       selection: oldtweet,
       oldtweets: [
-        { test: 'blow', shane: 'hard'}
+        { test: this.state.selection, shane: 'hard'}
                   ]
-
     })
-    console.log(oldtweet)
-
+    }
 
   }
 
@@ -108,7 +114,7 @@ class App extends Component {
                 />)
             )}
         </div>
-                    { this.state.oldtweets.map( (tweet) => (<OldTweet selection={this.state.selection}/>) )}
+            { this.state.oldtweets.map( (tweet) => (<OldTweet selection={this.state.selection}/>) )}
       </div>
     );
   }
